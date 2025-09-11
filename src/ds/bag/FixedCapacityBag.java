@@ -42,7 +42,7 @@ public class FixedCapacityBag<Item> implements Bag<Item> {
     /**
      * Returns the number of elements in the bag.
      *
-     * @return the number of elements in the bag
+     * @return the number of elements in the bag; empty bag returns 0 not null
      */
     @Override
     public int size() {
@@ -61,8 +61,8 @@ public class FixedCapacityBag<Item> implements Bag<Item> {
 
     /**
      * Specification: required modifier function add(v, B) for Bag ADT
-     * Description: adds an item to the bag. If the bag is full, throws a
-     * RuntimeException. Implementation: adds the item to the end of the
+     * Description: adds an item/element to the bag. If the bag is full, throws
+     * a RuntimeException. Implementation: adds the item to the end of the
      * elements array and increments the numberOfElements variable.
      *
      * @param item the item to add
@@ -83,7 +83,8 @@ public class FixedCapacityBag<Item> implements Bag<Item> {
      * there are no more elements. Otherwise returns the proceeding element via
      * next().
      *
-     * @return an iterator that iterates over the items in the bag
+     * @return <code>Iterator</code> This iterator iterates over the items in
+     * the bag
      */
     @Override
     public Iterator<Item> iterator() {
