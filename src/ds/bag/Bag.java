@@ -1,7 +1,8 @@
 /**
- * Module 1 Assignment 1 Task 1: Basic Implementation of Fixed Capacity Bags
+ * Module 1 Assignment 1: Fixed Capacity Bag
+ * Task 1: Basic Implementation of Fixed Capacity Bags
+ * Task 2: Is singleton API method
  *
- * @date 09/06/2025
  * @author Cullen Kelley
  */
 package ds.bag;
@@ -35,4 +36,11 @@ public interface Bag<Item> extends Iterable<Item> {
      * @return the number of items in the bag
      */
     public int size();
+
+    /**
+     * API: Returns true if the bag contains exactly one item.
+     *
+     * @return true if the bag contains exactly one item; false otherwise
+     */
+    public boolean isSingleton();
 }

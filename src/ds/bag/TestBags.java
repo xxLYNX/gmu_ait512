@@ -1,7 +1,8 @@
 /**
- * Module 1 Assignment 1 Task 1: Basic Implementation of Fixed Capacity Bags
+ * Module 1 Assignment 1: Fixed Capacity Bag
+ * Task 1: Basic Implementation of Fixed Capacity Bags
+ * Task 2: Is singleton API method
  *
- * @date 09/06/2025
  * @author Cullen Kelley
  */
 package ds.bag;
@@ -16,23 +17,29 @@ public class TestBags {
      * how many items start with the letter 'b'. Implementation: instantiates
      * new FixedCapacityBag object args capacity 5, adds items to the bag,
      * STDOUT the bag items, counts how many items start with the letter 'b'
-     * STDOUT the resulting count.
+     * STDOUT the resulting count. Task2: addition of isSingleton() method test.
      */
     public static void test1FixedCapacityBag() {
         System.out.println("Create an empty bag of strings with capacity 5");
         FixedCapacityBag<String> bag = new FixedCapacityBag<>(5);
         System.out.println("Bag: " + bag.toString());
+        // Task2 test isSingleton on empty bag (should be false)
+        System.out.println("Is Singleton? " + bag.isSingleton());
 
         System.out.println("Add the item: book");
         bag.add("book");
 
         System.out.println("Bag: " + bag.toString());
+        // Task2 Test isSingleton on bag with one item (should be true)
+        System.out.println("Is Singleton? " + bag.isSingleton());
         System.out.println("Add the items: bag, computer, phone, key");
         bag.add("bag");
         bag.add("computer");
         bag.add("phone");
         bag.add("key");
         System.out.println("Bag: " + bag.toString());
+        // Task2 Test isSingleton on bag with multiple elements (should be false)
+        System.out.println("Is Singleton? " + bag.isSingleton());
         System.out.println("How many items start with b?");
         int count = 0;
         // We can use this form of for statement because Bag is iterable
@@ -46,6 +53,7 @@ public class TestBags {
                 .filter(item -> item.startsWith("b"))
                 .collect(java.util.stream.Collectors.joining(", "));
         System.out.println("Items starting with 'b': " + bItems);
+
     }
 
     /**
@@ -89,8 +97,8 @@ public class TestBags {
      */
     public static void main(String[] args) {
         Date date = new Date();
-        System.out.println("M1A1T1: Fixed Capacity Bag - Task 1b\nAuthor: Cullen Kelley\nDate: " + date.toString());
-        test2FixedCapacityBag();
+        System.out.println("M1A1T2: Fixed Capacity Bag - Task 2a\nAuthor: Cullen Kelley\nDate: " + date.toString());
+        test1FixedCapacityBag();
     }
 
 }

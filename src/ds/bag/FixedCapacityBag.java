@@ -1,7 +1,8 @@
 /**
- * Module 1 Assignment 1 Task 1: Basic Implementation of Fixed Capacity Bags
+ * Module 1 Assignment 1: Fixed Capacity Bag
+ * Task 1: Basic Implementation of Fixed Capacity Bags
+ * Task 2: Is singleton API method
  *
- * @date 09/06/2025
  * @author Cullen Kelley
  */
 package ds.bag;
@@ -104,6 +105,17 @@ public class FixedCapacityBag<Item> implements Bag<Item> {
                 throw new RuntimeException("No more elements in the bag");
             }
         };
+    }
+
+    /**
+     * Returns true if the bag contains exactly one item. Implementation: checks
+     * if numberOfElements is equal to 1.
+     *
+     * @return true if the bag contains exactly one item; false otherwise
+     */
+    @Override
+    public boolean isSingleton() {
+        return numberOfElements == 1;
     }
 
     /**
