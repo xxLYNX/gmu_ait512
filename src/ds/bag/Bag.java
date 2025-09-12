@@ -3,6 +3,7 @@
  * Task 1: Basic Implementation of Fixed Capacity Bags
  * Task 2: Is singleton API method
  *
+ * @date 9/12/2025
  * @author Cullen Kelley
  */
 package ds.bag;

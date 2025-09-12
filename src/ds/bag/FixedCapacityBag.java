@@ -1,8 +1,10 @@
 /**
  * Module 1 Assignment 1: Fixed Capacity Bag
  * Task 1: Basic Implementation of Fixed Capacity Bags
- * Task 2: Is singleton API method
+ * Task 2: Is singleton() API method
+ * Task 3: Improved toString() method & formatting
  *
+ * @date 9/12/2025
  * @author Cullen Kelley
  */
 package ds.bag;
@@ -125,8 +127,10 @@ public class FixedCapacityBag<Item> implements Bag<Item> {
      */
     public String toString() {
         String result = "[";
+        String separator = "";
         for (Item item : this) {
-            result += item.toString() + " ";
+            result += separator + item.toString() + "";
+            separator = ", ";
         }
         result += "]";
         return result;

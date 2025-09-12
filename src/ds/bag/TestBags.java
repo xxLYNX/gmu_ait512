@@ -2,7 +2,9 @@
  * Module 1 Assignment 1: Fixed Capacity Bag
  * Task 1: Basic Implementation of Fixed Capacity Bags
  * Task 2: Is singleton API method
+ * Task 3: Improved toString() method & formatting
  *
+ * @date 9/12/2025
  * @author Cullen Kelley
  */
 package ds.bag;
@@ -90,8 +92,17 @@ public class TestBags {
         }
     }
 
+    /**
+     * Description: test FixedCapacityBag by creating a bag of doubles with
+     * capacity 10, adding 10 doubles to the bag, printing the bag, and testing
+     * isSingleton() method at each step. Implementation: instantiates new
+     * FixedCapacityBag object args capacity 10, STDOUT the bag items and
+     * isSingleton() result, adds one item to the bag, STDOUT the bag items and
+     * isSingleton() result, adds remaining items to the bag, STDOUT the bag
+     * items and isSingleton() result.
+     */
     public static void test3FixedCapacityBag() {
-        System.out.println("Test3: Create a bag of doubles with capacity 10, populate with elements, and test:");
+        System.out.println("Test 3: Create a bag of doubles with capacity 10, populate with elements, and test:");
         FixedCapacityBag<Double> bag = new FixedCapacityBag<>(10);
         System.out.println("Bag: " + bag.toString() + " " + "Is bag singleton? " + bag.isSingleton());
         bag.add(1.0);
@@ -102,6 +113,27 @@ public class TestBags {
         System.out.println("Bag: " + bag.toString() + " " + "Is bag singleton? " + bag.isSingleton());
     }
 
+    public static void test4FixedCapacityBag() {
+        System.out.println("Test 4: Creat Bag<Long> with capacity 10 and perform various toString tests");
+
+        // Test 1: Empty bag
+        FixedCapacityBag<Long> bag1 = new FixedCapacityBag<>(3);
+        System.out.println("Test 1 - Empty bag: " + bag1.toString() + " | Size: " + bag1.size());
+
+        // Test 2: Bag with one long value (greater than Integer.MAX_VALUE)
+        FixedCapacityBag<Long> bag2 = new FixedCapacityBag<>(3);
+        long bigLong = 3000000000L; // > Integer.MAX_VALUE
+        bag2.add(bigLong);
+        System.out.println("Test 2 - One big long: " + bag2.toString() + " | Size: " + bag2.size());
+
+        // Test 3: Bag with multiple long values, including a negative and a zero
+        FixedCapacityBag<Long> bag3 = new FixedCapacityBag<>(5);
+        bag3.add(0L);
+        bag3.add(-1234567890123L);
+        bag3.add(9876543210L);
+        System.out.println("Test 3 - Multiple longs: " + bag3.toString() + " | Size: " + bag3.size());
+    }
+
     /**
      * Main method to run tests.
      *
@@ -109,8 +141,11 @@ public class TestBags {
      */
     public static void main(String[] args) {
         Date date = new Date();
-        System.out.println("M1A1T2: Fixed Capacity Bag - Task 2b\nAuthor: Cullen Kelley\nDate: " + date.toString());
-        test3FixedCapacityBag();
+        System.out.println("M1A1T3: Fixed Capacity Bag - Task 3a\nAuthor: Cullen Kelley\nDate: " + date.toString());
+        //test1FixedCapacityBag();
+        //test2FixedCapacityBag();
+        //test3FixedCapacityBag();
+        test4FixedCapacityBag();
     }
 
 }
