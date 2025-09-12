@@ -90,6 +90,18 @@ public class TestBags {
         }
     }
 
+    public static void test3FixedCapacityBag() {
+        System.out.println("Test3: Create a bag of doubles with capacity 10, populate with elements, and test:");
+        FixedCapacityBag<Double> bag = new FixedCapacityBag<>(10);
+        System.out.println("Bag: " + bag.toString() + " " + "Is bag singleton? " + bag.isSingleton());
+        bag.add(1.0);
+        System.out.println("Bag: " + bag.toString() + " " + "Is bag singleton? " + bag.isSingleton());
+        for (double i = 2.3; i <= 10.1; i += 1.30) {
+            bag.add(i);
+        }
+        System.out.println("Bag: " + bag.toString() + " " + "Is bag singleton? " + bag.isSingleton());
+    }
+
     /**
      * Main method to run tests.
      *
@@ -97,8 +109,8 @@ public class TestBags {
      */
     public static void main(String[] args) {
         Date date = new Date();
-        System.out.println("M1A1T2: Fixed Capacity Bag - Task 2a\nAuthor: Cullen Kelley\nDate: " + date.toString());
-        test1FixedCapacityBag();
+        System.out.println("M1A1T2: Fixed Capacity Bag - Task 2b\nAuthor: Cullen Kelley\nDate: " + date.toString());
+        test3FixedCapacityBag();
     }
 
 }
