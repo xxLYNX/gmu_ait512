@@ -3,6 +3,7 @@
  * Task 1: Basic Implementation of Fixed Capacity Bags
  * Task 2: Is singleton API method
  * Task 3: Improved toString() method & formatting
+ * Task 4: Customized testing method
  *
  * @date 9/12/2025
  * @author Cullen Kelley
@@ -113,8 +114,18 @@ public class TestBags {
         System.out.println("Bag: " + bag.toString() + " " + "Is bag singleton? " + bag.isSingleton());
     }
 
+    /**
+     * Description: test FixedCapacityBag by creating a bag of Longs with
+     * capacity 10, adding various long values to the bag including edge cases
+     * like very large numbers, negative numbers, and zero, printing the bag
+     * after each addition, and testing the toString() method for correct
+     * formatting. Implementation: instantiates new FixedCapacityBag object args
+     * capacity 10, adds various long values to the bag including edge cases,
+     * STDOUT the bag items and size after each addition to verify correct
+     * formatting and content.
+     */
     public static void test4FixedCapacityBag() {
-        System.out.println("Test 4: Creat Bag<Long> with capacity 10 and perform various toString tests");
+        System.out.println("Test 4: Creat Bag<Long> with varied capacities and perform various toString tests");
 
         // Test 1: Empty bag
         FixedCapacityBag<Long> bag1 = new FixedCapacityBag<>(3);
@@ -134,6 +145,31 @@ public class TestBags {
         System.out.println("Test 3 - Multiple longs: " + bag3.toString() + " | Size: " + bag3.size());
     }
 
+    public static void testFixedCapacityBagofStrings(String name1, String name2, String name3, String name4, String name5) {
+        System.out.println("Test 5: Create Bag<String> with capacity 5");
+        FixedCapacityBag<String> bag = new FixedCapacityBag<>(5);
+        System.out.println("Bag has been instantiated.");
+        System.out.println("Bag: " + bag.toString() + " | Size: " + bag.size() + " | Is Singleton? " + bag.isSingleton());
+        bag.add(name1);
+        System.out.println("Bag has one item added.");
+        System.out.println("Bag: " + bag.toString() + " | Size: " + bag.size() + " | Is Singleton? " + bag.isSingleton());
+        bag.add(name2);
+        bag.add(name3);
+        bag.add(name4);
+        bag.add(name5);
+        System.out.println("Bag is fully populated.");
+        System.out.println("Bag: " + bag.toString() + " | Size: " + bag.size() + " | Is Singleton? " + bag.isSingleton());
+        int count = 0;
+        // We can use this form of for statement because Bag is iterable (not we don't care about order)
+        for (String item : bag) {
+            if (item.charAt(0) == 'a') {
+                System.out.println("Item starts with 'a': " + item);
+                count++;
+            }
+        }
+        System.out.println("There are " + count + " items that start with a.");
+    }
+
     /**
      * Main method to run tests.
      *
@@ -141,11 +177,12 @@ public class TestBags {
      */
     public static void main(String[] args) {
         Date date = new Date();
-        System.out.println("M1A1T3: Fixed Capacity Bag - Task 3a\nAuthor: Cullen Kelley\nDate: " + date.toString());
+        System.out.println("M1A1T4: Fixed Capacity Bag - Task 4a\nAuthor: Cullen Kelley\nDate: " + date.toString());
         //test1FixedCapacityBag();
         //test2FixedCapacityBag();
         //test3FixedCapacityBag();
-        test4FixedCapacityBag();
+        //test4FixedCapacityBag();
+        testFixedCapacityBagofStrings("apple", "banana", "cherry", "date", "elderberry");
     }
 
 }
