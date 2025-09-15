@@ -47,6 +47,9 @@ public class FixedCapacityStack<Item> implements Stack<Item> {
         return numberOfElements;
     }
 
+    /**
+     * Implementation: adds an item to the top of the stack
+     */
     @Override
     public void push(Item item) {
         //check if stack is at capacity
@@ -56,6 +59,9 @@ public class FixedCapacityStack<Item> implements Stack<Item> {
         elements[numberOfElements++] = item; //add item and increment size   
     }
 
+    /**
+     * Implementation: removes and returns the topmost item from the stack
+     */
     @Override
     public Item pop() {
         if (numberOfElements == 0) {
@@ -67,6 +73,10 @@ public class FixedCapacityStack<Item> implements Stack<Item> {
         return top;
     }
 
+    /**
+     * Implementation: returns an iterator to iterate through the stack elements
+     * from top to bottom preserving stack order
+     */
     @Override
     public Iterator<Item> iterator() {
         return new Iterator<Item>() {

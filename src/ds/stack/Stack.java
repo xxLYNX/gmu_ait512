@@ -46,6 +46,14 @@ public interface Stack<Item> extends Iterable<Item> {
         return size() == 0;
     }
 
+    /**
+     * Default toString method with custom formatting.
+     *
+     * @param start the starting string (e.g. "[")
+     * @param end the ending string (e.g. "]")
+     * @param separator the separator string (e.g. ", ")
+     * @return the formatted string representation of the stack
+     */
     default public String toString(String start, String end, String separator) {
         String result = start;
         boolean needSeparator = false;
