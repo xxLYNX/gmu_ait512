@@ -7,9 +7,7 @@
  */
 package ds.queue;
 
-java
-
-.util.Iterator;
+import java.util.Iterator;
 
 /**
  * Implementation of a generic queue (FIFO - first in first out) using a fixed

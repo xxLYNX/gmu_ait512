@@ -67,6 +67,8 @@ public interface Queue<Item> extends Iterable<Item> {
             }
             result += item.toString();
         }
+        result += end;
+        return result;
     }
 
 }

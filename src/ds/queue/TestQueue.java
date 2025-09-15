@@ -27,6 +27,7 @@ public class TestQueue {
         System.out.println("  - size = " + queue.size());
         System.out.println("  - isEmpty = " + queue.isEmpty());
         // My addition: print the front item if the queue is not empty
+
         if (!queue.isEmpty()) {
             System.out.print("  - front: ");
             for (Object item : queue) {
@@ -34,6 +35,7 @@ public class TestQueue {
                 break; // Only print the first (front) item
             }
         }
+
     }
 
     /**
@@ -56,6 +58,7 @@ public class TestQueue {
         }
         printQueue(queue, name);
         // My addition: confirm if the item was added
+        /*
         boolean success = false;
         try {
             queue.enqueue(item);
@@ -69,33 +72,28 @@ public class TestQueue {
         if (!success) {
             System.out.println("  - Item was not added due to exception.");
         }
+         */
     }
 
     /**
-     * Test: Dequeue (remove) an item from the queue and print the updated
-     * queue.
+     * Test: Dequeue (remove and return) an item from the queue and print the
+     * updated queue.
      *
      * @param queue the queue to remove the item from
      * @param name the name of the queue for identification
      */
     private static <Item> void testDequeueItem(Queue<Item> queue, String name) {
         System.out.println();
-        System.out.println("Dequeue (remove) an item from queue: " + name);
-        System.out.println("  - Before dequeue: size = " + queue.size() + ", isEmpty = " + queue.isEmpty());
-        Item item = null;
-        boolean success = false;
+        System.out.println("Dequeue (remove and return) the next item from a queue");
+        System.out.println("  - queue = " + name);
         try {
-            item = queue.dequeue();
-            success = true;
-            System.out.println("  - Dequeued item: " + item);
+            Item item = queue.dequeue();
+            System.out.println("  - dequeue successfull");
+            System.out.println("  - item = " + item.toString());
         } catch (Exception e) {
-            System.out.println("  - Exception: " + e.getMessage());
+            System.out.println("  - runtime exception: " + e.getMessage());
         }
-        System.out.println("  - After dequeue: size = " + queue.size() + ", isEmpty = " + queue.isEmpty());
         printQueue(queue, name);
-        if (!success) {
-            System.out.println("  - No item was removed due to exception.");
-        }
     }
 
     /**
@@ -104,9 +102,9 @@ public class TestQueue {
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
-        System.out.println("Fixed Capacity Queue - Task 3 - by Mihai Boicu");
         Date date = new Date();
-        System.out.println("Executed on: " + date.toString());
+        System.out.println("Module 1 Assignment 1: Fixed Capacity Stack - Task 1a | Author: Cullen Kelley\nDate: " + date.toString());
+
         Queue<String> fcq3 = new FixedCapacityQueue<>(3);
         String fcq3Name = "fixed capacity queue of 3 elements";
         printQueue(fcq3, fcq3Name);
