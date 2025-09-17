@@ -19,7 +19,7 @@ public class TestStacks {
      * @param stack the stack to push the item onto
      * @param item the item to push onto the stack
      */
-    private static void testPushItem(Stack<String> stack, String item) {
+    private static <Item> void testPushItem(Stack<Item> stack, Item item) {
         System.out.println();
         System.out.println("Push item: " + item.toString());
         try {
@@ -36,10 +36,10 @@ public class TestStacks {
      * @param stack the stack to pop the item from
      * @return the popped item (or null if stack was empty)
      */
-    private static String testPopItem(Stack<String> stack) {
+    private static <Item> Item testPopItem(Stack<Item> stack) {
         System.out.println();
         System.out.println("Pop item from stack");
-        String item = null;
+        Item item = null;
         try {
             item = stack.pop();
             System.out.println("Popped item: " + item);
@@ -55,21 +55,14 @@ public class TestStacks {
      *
      * @param s the tested empty stack
      */
-    private static void testStringStack(Stack<String> s) {
-        System.out.println("Empty stack: " + s.toString("[", "]", ", "));
-        testPushItem(s, "Virginia");
-        testPushItem(s, "California");
-        testPushItem(s, "Florida");
-        testPushItem(s, "Texas");
-        testPushItem(s, "New York");
-        testPushItem(s, "Ohio"); //should fail - stack full
-        //Pop 4 items
-
-        testPopItem(s);
-        testPopItem(s);
-        testPopItem(s);
-        testPopItem(s);
-
+    private static <Item> void testStack(Stack<Item> s, Item[] items, int numberOfPops) {
+        System.out.println("Empty stack: " + s.toString("[", ">", ", "));
+        for (Item item : items) {
+            testPushItem(s, item);
+        }
+        for (int i = 0; i < numberOfPops; i++) {
+            testPopItem(s);
+        }
     }
 
     /**
@@ -78,10 +71,14 @@ public class TestStacks {
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
+        String assignment = "M1B-21: Basic Implementation of Dynamic Capacity Stacks";
         Date date = new Date();
-        System.out.println("Module 1b Assignment 1: Fixed Capacity Stack - Task 1a | Author: Cullen Kelley\nDate: " + date.toString());
-        FixedCapacityStack<String> fcs = new FixedCapacityStack<>(5);
-        testStringStack(fcs);
+        System.out.println(assignment + "\nModule 1 Assignment: Dynamic Capacity Stack - Task 1b | Author: Cullen Kelley\nDate: " + date.toString());
+        //String[] items = {"a", "b", "c", "d", "e"};
+        //DynamicCapacityStack<String> dcs = new DynamicCapacityStack<>(3);
+        Integer[] items = {1, 2, 3, 4, 5};
+        DynamicCapacityStack<Integer> dcs = new DynamicCapacityStack<>(3);
+        testStack(dcs, items, 6);
     }
 
 }
