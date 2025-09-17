@@ -103,7 +103,7 @@ public class TestQueue {
      */
     public static void main(String[] args) {
         Date date = new Date();
-        System.out.println("Module 1 Assignment 1: Fixed Capacity Stack - Task 1a | Author: Cullen Kelley\nDate: " + date.toString());
+        System.out.println("Module 1b Assignment 1: Fixed Capacity Stack - Task 3 | Author: Cullen Kelley\nDate: " + date.toString());
 
         Queue<String> fcq3 = new FixedCapacityQueue<>(3);
         String fcq3Name = "fixed capacity queue of 3 elements";
