@@ -9,14 +9,41 @@ package ds.queue;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Implementation of a generic queue (FIFO - first in first out) using a
+ * dynamically resizing array. Queue (ADT): an ordered collection of generic
+ * elements (objects in Java) that may have duplicates and allows for efficient
+ * addition of elements at the end and removal of elements from the front.
+ * Operations: enqueue, dequeue, isEmpty, and size
+ *
+ * @param <Item> the type of elements in the queue (any object type)
+ */
 public class DynamicCapacityQueue<Item> implements Queue<Item> {
 
+    /**
+     * array of queue elements (generic)
+     */
     private Item[] elements;
+    /**
+     * current number of elements in queue (size)
+     */
     private int numberOfElements;
 
+    /**
+     * index of the first element in the queue
+     */
     private int startIndex;
+    /**
+     * index of the last element in the queue
+     */
     private int endIndex;
 
+    /**
+     * Function: constructor Implementation: uses a generic array to store the
+     * queue elements and an int to track the number of elements in the queue
+     * (size). enqueue() adds an item to the end of the queue, dequeue() removes
+     * and returns an item from the front of the queue.
+     */
     @SuppressWarnings("unchecked")
     public DynamicCapacityQueue(int initialCapacity) {
         elements = (Item[]) new Object[initialCapacity];
@@ -25,15 +52,24 @@ public class DynamicCapacityQueue<Item> implements Queue<Item> {
         endIndex = -1;
     }
 
+    /**
+     * Default constructor with initial capacity of 10.
+     */
     public DynamicCapacityQueue() {
         this(10); // default initial capacity
     }
 
+    /**
+     * Implementation: returns numberOfElements
+     */
     @Override
     public int size() {
         return numberOfElements;
     }
 
+    /**
+     * Double the capacity of the underlying array when it is full.
+     */
     private void doubleCapacity() {
         @SuppressWarnings("unchecked")
         Item[] newElements = (Item[]) new Object[elements.length * 2];
@@ -50,6 +86,10 @@ public class DynamicCapacityQueue<Item> implements Queue<Item> {
         endIndex = numberOfElements - 1;
     }
 
+    /**
+     * Halve the capacity of the underlying array when it is less than 25% full,
+     * but not less than 10.
+     */
     private void halfCapacity() {
         if (numberOfElements >= elements.length / 2) {
             throw new RuntimeException("Queue capacity at >=50% - cannot half capacity without loosing data");
@@ -69,6 +109,9 @@ public class DynamicCapacityQueue<Item> implements Queue<Item> {
         endIndex = numberOfElements - 1;
     }
 
+    /**
+     * Implementation: adds an item to the end of the queue
+     */
     @Override
     public void enqueue(Item item) {
         if (numberOfElements == elements.length) {
@@ -85,6 +128,9 @@ public class DynamicCapacityQueue<Item> implements Queue<Item> {
         elements[endIndex] = item;
     }
 
+    /**
+     * Implementation: removes and returns the item from the front of the queue
+     */
     @Override
     public Item dequeue() {
         if (numberOfElements == 0) {
@@ -108,6 +154,10 @@ public class DynamicCapacityQueue<Item> implements Queue<Item> {
         return item;
     }
 
+    /**
+     * Implementation: returns an iterator to iterate through the queue elements
+     * from front to back preserving queue order
+     */
     @Override
     public Iterator<Item> iterator() {
         return new Iterator<Item>() {
