@@ -6,6 +6,8 @@
  */
 package ds.stack;
 
+import ds.queue.DynamicCapacityQueue;
+import ds.queue.Queue;
 import java.util.Date;
 
 /**
@@ -65,20 +67,127 @@ public class TestStacks {
         }
     }
 
+    // Section for testing queues
+    /**
+     * Test: Enqueue (add) an item to the queue and print the updated queue.
+     * NOTE: This method was implemented by me to supplement the provided code
+     * as needed.
+     *
+     * @param <Item>
+     * @param queue
+     * @param name
+     * @param item
+     */
+    private static <Item> void testEnqueueItem(Queue<Item> queue, String name, Item item) {
+        System.out.println();
+        System.out.println("Enqueue (add) an item to a queue");
+        System.out.println("  - queue = " + name);
+        System.out.println("  - item = " + item);
+        try {
+            queue.enqueue(item);
+            System.out.println("  - add successfull");
+        } catch (Exception e) {
+            System.out.println("  - runtime exception: " + e.getMessage());
+        }
+        printQueue(queue, name);
+    }
+
+    /**
+     * Test: Dequeue (remove and return) an item from the queue and print the
+     * updated queue. NOTE: This method was implemented by me to supplement the
+     * provided code as needed.
+     *
+     * @param <Item>
+     * @param queue
+     * @param name
+     */
+    private static <Item> void testDequeueItem(Queue<Item> queue, String name) {
+        System.out.println();
+        System.out.println("Dequeue (remove and return) the next item from a queue");
+        System.out.println("  - queue = " + name);
+        try {
+            Item item = queue.dequeue();
+            System.out.println("  - dequeue successfull");
+            System.out.println("  - item = " + item);
+        } catch (Exception e) {
+            System.out.println("  - runtime exception: " + e.getMessage());
+        }
+        printQueue(queue, name);
+    }
+
+    /**
+     * Test: Perform a complex sequence of enqueue and dequeue operations on a
+     * queue.
+     *
+     * @param <Item> the type of elements in the queue (any object type)
+     * @param queue the tested queue
+     * @param name the name of the tested queue
+     * @param items1 the first set of items to enqueue
+     * @param deq1 the number of items to dequeue after the first set
+     * @param items2 the second set of items to enqueue
+     * @param deq2 the number of items to dequeue after the second set
+     */
+    private static <Item> void testQueue(Queue<Item> queue, String name, Item[] items1, int deq1, Item[] items2, int deq2) {
+        System.out.println();
+        System.out.println("Complex test of the queue " + name);
+        for (Item item : items1) {
+            testEnqueueItem(queue, name, item);
+        }
+        for (int i = 0; i < deq1; i++) {
+            testDequeueItem(queue, name);
+        }
+
+        for (Item item : items2) {
+            testEnqueueItem(queue, name, item);
+        }
+        for (int i = 0; i < deq2; i++) {
+            testDequeueItem(queue, name);
+        }
+
+    }
+
+    /**
+     * Print the details of a queue including its name, elements, size, and
+     * whether it is empty.
+     *
+     * @param <Item>
+     * @param queue
+     * @param name
+     */
+    private static <Item> void printQueue(Queue<Item> queue, String name) {
+        System.out.println("Queue: " + name);
+        System.out.println("  - elements = " + queue.toString("<< ", " <<", ", "));
+        System.out.println("  - size = " + queue.size());
+        System.out.println("  - isEmpty = " + queue.isEmpty());
+        // Show capacity if available
+        if (queue instanceof ds.queue.DynamicCapacityQueue) {
+            System.out.println("  - capacity = " + ((ds.queue.DynamicCapacityQueue<?>) queue).getCapacity());
+        }
+    }
+    // End section for testing queues
+
     /**
      * Main method to run the stack tests.
      *
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
-        String assignment = "M1B-21: Basic Implementation of Dynamic Capacity Stacks";
+        String assignment = "M1B-22: Task 2 Basic Implementation of Dynamic Capacity Queues";
         Date date = new Date();
-        System.out.println(assignment + "\nModule 1 Assignment: Dynamic Capacity Stack - Task 1b | Author: Cullen Kelley\nDate: " + date.toString());
+        System.out.println(assignment + "\nModule 1 Assignment: Basic Implementation of Dynamic Capacity Queues - Task 2b | Author: Cullen Kelley\nDate: " + date.toString());
         //String[] items = {"a", "b", "c", "d", "e"};
         //DynamicCapacityStack<String> dcs = new DynamicCapacityStack<>(3);
-        Integer[] items = {1, 2, 3, 4, 5};
-        DynamicCapacityStack<Integer> dcs = new DynamicCapacityStack<>(3);
-        testStack(dcs, items, 6);
+        //Integer[] items = {1, 2, 3, 4, 5};
+        //DynamicCapacityStack<Integer> dcs = new DynamicCapacityStack<>(3);
+        //testStack(dcs, items, 6);
+
+        // Queue tests
+        Queue<Double> dcq1 = new DynamicCapacityQueue<>(1);
+        String dcq1Name = "Dynamic capacity queue with 1 initial capacity";
+        printQueue(dcq1, dcq1Name);
+        Double[] strings1 = {1.1, 10.1};
+        Double[] strings2 = {100.3, 1000.4};
+        testQueue(dcq1, dcq1Name, strings1, 1, strings2, 2);
     }
 
 }
