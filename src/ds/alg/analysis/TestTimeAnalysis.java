@@ -27,6 +27,11 @@ public class TestTimeAnalysis {
             // tested code - end
             long time = watch.elapsedTime();
             ta.add(time);
+            //added this to ensure sum is used
+            if (sum == -1) {
+                System.out.println("Impossible");
+            }
+            //end addition
         }
         return ta;
     }
@@ -38,14 +43,22 @@ public class TestTimeAnalysis {
      * @param args - not used
      */
     public static void main(String[] args) {
-        String assignment = "M2A1: Task 3 Time analysis class\n";
+        String assignment = "M2A1: Task 4 Time analysis comparison based on number of trials\n";
         Date date = new Date();
         String Ran = "Date: " + date.toString();
         String author = "Author: Cullen Kelley";
         System.out.println(assignment + Ran + "\n" + author + "\n");
 
+        //Leftover from Task 3
+        //TimeAnalysis ta11 = testAddition(11, 10000000);
+        //ta11.printStatistics();
+        //Task 4 additions
         TimeAnalysis ta11 = testAddition(11, 10000000);
         ta11.printStatistics();
+        TimeAnalysis ta101 = testAddition(101, 10000000);
+        ta101.printStatistics();
+        TimeAnalysis ta1001 = testAddition(1001, 10000000);
+        ta1001.printStatistics();
 
     }
 }

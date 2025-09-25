@@ -7,7 +7,6 @@
 package ds.alg.analysis;
 
 import ds.bag.FixedCapacityBag;
-import java.util.Date;
 import java.util.Iterator;
 
 public class TimeAnalysis extends FixedCapacityBag<Long> {
@@ -281,11 +280,11 @@ public class TimeAnalysis extends FixedCapacityBag<Long> {
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
-        String assignment = "M2A1: Task 3 Time analysis class\n";
-        Date date = new Date();
-        String Ran = "Date: " + date.toString();
-        String author = "Author: Cullen Kelley";
-        System.out.println(assignment + Ran + "\n" + author + "\n");
+        //String assignment = "M2A1: Task 3 Time analysis class\n";
+        //Date date = new Date();
+        //String Ran = "Date: " + date.toString();
+        //String author = "Author: Cullen Kelley";
+        //System.out.println(assignment + Ran + "\n" + author + "\n");
 
         long[] a = {1025, 1017, 1031, 1009, 1005, 1022};
         TimeAnalysis ta = new TimeAnalysis("test", a);
