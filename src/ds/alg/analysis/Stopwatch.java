@@ -19,4 +19,23 @@ public class Stopwatch {
     public void startWatch() {
         startTime = System.currentTimeMillis();
     }
+
+    /**
+     * Constructor that initializes stopwatch and starts it (tracks in
+     * miliseconds).
+     */
+    public Stopwatch() {
+        startWatch();
+    }
+
+    /**
+     * Returns the elapsed time (in milliseconds) since the stopwatch was
+     * started.
+     *
+     * @return elapsed time in milliseconds as {@code long}
+     */
+    public long elapsedTime() {
+        return System.currentTimeMillis() - startTime;
+    }
+
 }
