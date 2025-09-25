@@ -14,7 +14,7 @@ import java.util.Date;
 public class TestStopwatch {
 
     public static void main(String[] args) {
-        String assignment = "M2A1.1: Task 1 Basic Implementation of StopWatch\n";
+        String assignment = "M2A1.2: Task 2 Basic Implementation of StopWatch\n";
         Date date = new Date();
         String Ran = "Date: " + date.toString();
         String author = "Author: Cullen Kelley";
@@ -22,7 +22,7 @@ public class TestStopwatch {
 
         Stopwatch w = new Stopwatch();
         double sum = 0.0;
-        for (int i = 1; i <= 1000000000; i++) {
+        for (int i = 1; i <= 2000000000; i++) {
             sum += i;
         }
         long t = w.elapsedTime();
