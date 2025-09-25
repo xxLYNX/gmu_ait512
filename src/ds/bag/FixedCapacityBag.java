@@ -136,4 +136,14 @@ public class FixedCapacityBag<Item> implements Bag<Item> {
         return result;
     }
 
+    // Additional code as part of M2A1
+    /**
+     * Returns the capacity of the bag.
+     *
+     * @return the capacity of the bag as an integer
+     */
+    protected int getCapacity() {
+        return elements.length;
+    }
+
 }
