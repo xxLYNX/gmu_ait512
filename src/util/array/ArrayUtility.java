@@ -1,0 +1,75 @@
+package util.array;
+
+/**
+ * Utility methods for working with integer arrays.
+ *
+ * @author Cullen Kelley
+ */
+public class ArrayUtility {
+
+    /**
+     * Converts an array of integers to a string with custom start, separator,
+     * and end.
+     *
+     * @param array the array to convert
+     * @param start the string to start with
+     * @param separator the separator between elements
+     * @param end the string to end with
+     * @return the formatted string
+     */
+    public static String toString(int[] array, String start, String separator, String end) {
+        String result = start;
+        boolean needSeparator = false;
+        for (int elem : array) {
+            if (needSeparator) {
+                result += separator;
+            }
+            result += elem;
+            needSeparator = true;
+        }
+        result += end;
+        return result;
+    }
+
+    /**
+     * Checks if two integer arrays are equal in length and content.
+     *
+     * @param a1 the first array
+     * @param a2 the second array
+     * @return true if arrays are equal, false otherwise
+     */
+    public static boolean equals(int[] a1, int[] a2) {
+        if (a1.length != a2.length) {
+            return false;
+        }
+        for (int i = 0; i < a1.length; i++) {
+            if (a1[i] != a2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int[] generateIntArray(int length, int min, int max) {
+        int[] array = new int[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = (int) (min + Math.random() * (1.0 + max - min));
+        }
+        return array;
+    }
+
+    /**
+     * Checks if an integer array is sorted in increasing order.
+     *
+     * @param a the array to check
+     * @return true if sorted, false otherwise
+     */
+    public static boolean isSorted(int[] a) {
+        for (int i = 0; i < a.length - 1; i++) {
+            if (a[i] > a[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
