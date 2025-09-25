@@ -43,7 +43,7 @@ public class TestTimeAnalysis {
      * @param args - not used
      */
     public static void main(String[] args) {
-        String assignment = "M2A1: Task 4 Time analysis comparison based on number of trials\n";
+        String assignment = "M2A1: Task 5: Time analysis comparison based on numbers added\n";
         Date date = new Date();
         String Ran = "Date: " + date.toString();
         String author = "Author: Cullen Kelley";
@@ -53,12 +53,25 @@ public class TestTimeAnalysis {
         //TimeAnalysis ta11 = testAddition(11, 10000000);
         //ta11.printStatistics();
         //Task 4 additions
+        /*
         TimeAnalysis ta11 = testAddition(11, 10000000);
         ta11.printStatistics();
         TimeAnalysis ta101 = testAddition(101, 10000000);
         ta101.printStatistics();
         TimeAnalysis ta1001 = testAddition(1001, 10000000);
         ta1001.printStatistics();
+         */
+        //Task 5 additions
+        int[] numbersToAdd = {10000000, 100000000, 1000000000};
+        int[] trials = {11, 101, 1001};
 
+        for (int n : numbersToAdd) {
+            for (int t : trials) {
+                System.out.println("\nAdding " + n + " numbers, " + t + " trials:");
+                TimeAnalysis ta = testAddition(t, n);
+                ta.printStatistics();
+            }
+
+        }
     }
 }
