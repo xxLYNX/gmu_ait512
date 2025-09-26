@@ -63,7 +63,8 @@ public class TestTimeAnalysis {
         Date date = new Date();
         String Ran = "Date: " + date.toString();
         String author = "Author: Cullen Kelley";
-        System.out.println(assignment + Ran + "\n" + author + "\n");
+        System.out.println(assignment + Ran + "\n" + author);
+        System.out.println("Step: 3 - Run test again for 100M");
 
         //Leftover from Task 3
         //TimeAnalysis ta11 = testAddition(11, 10000000);

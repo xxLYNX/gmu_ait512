@@ -50,16 +50,8 @@ public class ArrayUtility {
         return true;
     }
 
-    public static int[] generateIntArray(int length, int min, int max) {
-        int[] array = new int[length];
-        for (int i = 0; i < length; i++) {
-            array[i] = (int) (min + Math.random() * (1.0 + max - min));
-        }
-        return array;
-    }
-
     /**
-     * Checks if an integer array is sorted in increasing order.
+     * API: Checks if an integer array is sorted in increasing order.
      *
      * @param a the array to check
      * @return true if sorted, false otherwise
@@ -72,4 +64,22 @@ public class ArrayUtility {
         }
         return true;
     }
+
+    /**
+     * Generates an array of random integers within a specified range. TEST:
+     * generateIntArray is tested in ArrayUtilityTest.java
+     *
+     * @param length the length of the array
+     * @param min the minimum value (inclusive)
+     * @param max the maximum value (inclusive)
+     * @return the generated array
+     */
+    public static int[] generateIntArray(int length, int min, int max) {
+        int[] array = new int[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = (int) (min + Math.random() * (1.0 + max - min));
+        }
+        return array;
+    }
+
 }

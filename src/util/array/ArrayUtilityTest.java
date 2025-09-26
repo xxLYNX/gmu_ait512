@@ -1,21 +1,28 @@
 package util.array;
 
 import java.util.Date;
+//import util.array.ArrayUtility;
 
 public class ArrayUtilityTest {
 
     /**
-     * Tests the toString method with various array lengths and formats.
+     * Tests the toString method with various array lengths and formats. Call
+     * only this class in main and check the results.
      */
     public static void toStringTest() {
+        // Test empty array
         int[] empty = {};
         System.out.println("Empty array: " + ArrayUtility.toString(empty, "{", " ", "}"));
+        // Test singleton array
         int[] singleton = {1};
         System.out.println("Singleton array: " + ArrayUtility.toString(singleton, "[", " ", "]"));
+        // Test two element array
         int[] twoElements = {11, 12};
         System.out.println("Two element array: " + ArrayUtility.toString(twoElements, "<", ", ", ">"));
+        // Test five element array
         int[] fiveElements = {1, 2, 3, 4, 5};
         System.out.println("Five element array: " + ArrayUtility.toString(fiveElements, "(", "; ", ")"));
+        // Test twenty element array
         int[] twentyElements = new int[20];
         for (int i = 0; i < 20; i++) {
             twentyElements[i] = i + 1;
@@ -24,7 +31,7 @@ public class ArrayUtilityTest {
     }
 
     /**
-     * Tests the equals method with various array pairs.
+     * Serves as a validation test for the equals method in ArrayUtility.
      */
     public static void equalsTest() {
         int[] empty1 = {};
@@ -63,40 +70,38 @@ public class ArrayUtilityTest {
      * Tests array utility methods with arrays containing Integer.MIN_VALUE and
      * Integer.MAX_VALUE.
      */
-    public static void boundaryValueTest() {
-        int[] boundaryArray = {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
-        int[] reversedBoundary = {Integer.MAX_VALUE, 0, Integer.MIN_VALUE};
-        int[] minOnly = {Integer.MIN_VALUE};
-        int[] maxOnly = {Integer.MAX_VALUE};
-
-        System.out.println("Boundary array: " + ArrayUtility.toString(boundaryArray, "[", ", ", "]"));
-        System.out.println("Reversed boundary: " + ArrayUtility.toString(reversedBoundary, "[", ", ", "]"));
-        System.out.println("Min only: " + ArrayUtility.toString(minOnly, "[", ", ", "]"));
-        System.out.println("Max only: " + ArrayUtility.toString(maxOnly, "[", ", ", "]"));
-
-        System.out.println("Boundary equals reversed: " + ArrayUtility.equals(boundaryArray, reversedBoundary));
-        System.out.println("Boundary isSorted: " + ArrayUtility.isSorted(boundaryArray));
-        System.out.println("Reversed isSorted: " + ArrayUtility.isSorted(reversedBoundary));
-        System.out.println("Min only isSorted: " + ArrayUtility.isSorted(minOnly));
-        System.out.println("Max only isSorted: " + ArrayUtility.isSorted(maxOnly));
+    public static void generateIntArrayTest() {
+        int length = 10;
+        int min = 1;
+        int max = 30;
+        int[] array = ArrayUtility.generateIntArray(length, min, max);
+        // Display test array
+        System.out.println("Generated array: " + ArrayUtility.toString(array, "[", ", ", "]"));
+        // Display test of array attributes
+        System.out.println("Array length correct: " + (array.length == length));
+        boolean inRange = true;
+        for (int value : array) {
+            if (value < min || value > max) {
+                inRange = false;
+                break;
+            }
+        }
+        System.out.println("Array elements in range? [" + min + ", " + max + "]: " + inRange);
     }
 
     public static void main(String[] args) {
-        String assignment = "M2A2: Task 1: Utility methods for arrays\n";
+        String step = "Step 11: generate int arry test";
+        String assignment = "M2B1: Task 1d: Utility methods for arrays\n";
         Date date = new Date();
         String Ran = "Date: " + date.toString();
         String author = "Author: Cullen Kelley";
-        System.out.println(assignment + Ran + "\n" + author + "\n");
-        // Task 1a: toString test
+        System.out.println(assignment + Ran + "\n" + author + "\n" + step + "\n");
 
-        toStringTest();
-        // Task 1b: equals test
-        equalsTest();
-
+        //toStringTest();
+        //equalsTest();
         // Task 1c: isSorted test
-        isSortedTest();
-
+        //isSortedTest();
         // Task 1d: boundary value test
-        boundaryValueTest();
+        generateIntArrayTest();
     }
 }
