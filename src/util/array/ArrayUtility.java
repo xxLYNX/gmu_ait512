@@ -81,5 +81,55 @@ public class ArrayUtility {
         }
         return array;
     }
+// Added methods to generate arrays of other types
+
+    /**
+     * Generates an array of random long integers within a specified range.
+     *
+     * @param length
+     * @param min
+     * @param max
+     * @return
+     */
+    public static long[] generateLongArray(int length, long min, long max) {
+        long[] array = new long[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = (long) (min + Math.random() * (1.0 + max - min));
+        }
+        return array;
+    }
+
+    /**
+     * Generates an array of random doubles within a specified range.
+     *
+     * @param length the length of the array
+     * @param min the minimum value (inclusive)
+     * @param max the maximum value (inclusive)
+     * @return the generated array
+     */
+    public static double[] generateDoubleArray(int length, double min, double max) {
+        double[] array = new double[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = min + Math.random() * (max - min);
+        }
+        return array;
+    }
+
+    /**
+     * Generates an array of random Comparable objects (Integers) within a
+     * specified range.
+     *
+     * @param length the length of the array
+     * @param min the minimum value (inclusive)
+     * @param max the maximum value (inclusive)
+     * @return the generated array
+     */
+    public static Comparable[] generateComparableArray(int length, int min, int max) {
+        Comparable[] array = new Comparable[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = (Integer) (min + (int) (Math.random() * (1.0 + max - min)));
+        }
+        return array;
+    }
 
 }
