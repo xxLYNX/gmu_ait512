@@ -31,6 +31,69 @@ public class ArrayUtility {
         return result;
     }
 
+    public static String toString(long[] array, String start, String separator, String end) {
+        String result = start;
+        boolean needSeparator = false;
+        for (long elem : array) {
+            if (needSeparator) {
+                result += separator;
+            }
+            result += elem;
+            needSeparator = true;
+        }
+        result += end;
+        return result;
+    }
+
+    /**
+     * Converts an array of doubles to a string with custom start, separator,
+     * and end.
+     *
+     * @param array the array to convert
+     * @param start the string to start with
+     * @param separator the separator between elements
+     * @param end the string to end with
+     * @return the formatted string
+     */
+    public static String toString(double[] array, String start, String separator, String end) {
+        String result = start;
+        boolean needSeparator = false;
+        for (double elem : array) {
+            if (needSeparator) {
+                result += separator;
+            }
+            result += elem;
+            needSeparator = true;
+        }
+        result += end;
+        return result;
+    }
+
+    /**
+     * Converts an array of Comparable objects to a string with custom start,
+     * separator, and end.
+     *
+     * @param array the array to convert
+     * @param start the string to start with
+     * @param separator the separator between elements
+     * @param end the string to end with
+     * @return the formatted string
+     */
+    @SuppressWarnings("unchecked")
+    public static String toString(Comparable[] array, String start, String separator, String end) {
+        String result = start;
+        boolean needSeparator = false;
+        for (Comparable elem : array) {
+            if (needSeparator) {
+                result += separator;
+            }
+            result += elem;
+            needSeparator = true;
+        }
+        result += end;
+        return result;
+    }
+
     /**
      * Checks if two integer arrays are equal in length and content.
      *
@@ -50,6 +113,7 @@ public class ArrayUtility {
         return true;
     }
 
+    // Series of overloaded isSorted methods for different data types
     /**
      * API: Checks if an integer array is sorted in increasing order.
      *
@@ -59,6 +123,52 @@ public class ArrayUtility {
     public static boolean isSorted(int[] a) {
         for (int i = 0; i < a.length - 1; i++) {
             if (a[i] > a[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Checks if a long array is sorted in increasing order.
+     *
+     * @param a the array to check
+     * @return true if sorted, false otherwise
+     */
+    public static boolean isSorted(long[] a) {
+        for (int i = 0; i < a.length - 1; i++) {
+            if (a[i] > a[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Checks if a double array is sorted in increasing order.
+     *
+     * @param a the array to check
+     * @return true if sorted, false otherwise
+     */
+    public static boolean isSorted(double[] a) {
+        for (int i = 0; i < a.length - 1; i++) {
+            if (a[i] > a[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Checks if a Comparable array is sorted in increasing order.
+     *
+     * @param a the array to check
+     * @return true if sorted, false otherwise
+     */
+    @SuppressWarnings("unchecked")
+    public static boolean isSorted(Comparable[] a) {
+        for (int i = 0; i < a.length - 1; i++) {
+            if (a[i].compareTo(a[i + 1]) > 0) {
                 return false;
             }
         }
@@ -116,18 +226,26 @@ public class ArrayUtility {
     }
 
     /**
-     * Generates an array of random Comparable objects (Integers) within a
-     * specified range.
+     * Generates an array of random Comparable objects (Dates) within a
+     * specified day range from today.
      *
      * @param length the length of the array
-     * @param min the minimum value (inclusive)
-     * @param max the maximum value (inclusive)
-     * @return the generated array
+     * @param minDaysFromNow the minimum days from current date (can be negative
+     * for past dates)
+     * @param maxDaysFromNow the maximum days from current date (can be negative
+     * for past dates)
+     * @return the generated array of Date objects
      */
-    public static Comparable[] generateComparableArray(int length, int min, int max) {
+    public static Comparable[] generateComparableArray(int length, int minDaysFromNow, int maxDaysFromNow) {
         Comparable[] array = new Comparable[length];
+        long currentTime = System.currentTimeMillis();
+        long millisecondsPerDay = 24 * 60 * 60 * 1000L; // 24 hours * 60 min * 60 sec * 1000 ms
+
         for (int i = 0; i < length; i++) {
-            array[i] = (Integer) (min + (int) (Math.random() * (1.0 + max - min)));
+            // Generate random days within the specified range
+            int randomDays = minDaysFromNow + (int) (Math.random() * (maxDaysFromNow - minDaysFromNow + 1));
+            long randomTime = currentTime + (randomDays * millisecondsPerDay);
+            array[i] = new java.util.Date(randomTime);
         }
         return array;
     }
