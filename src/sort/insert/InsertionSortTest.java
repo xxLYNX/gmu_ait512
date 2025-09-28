@@ -1,8 +1,8 @@
 package sort.insert;
 
+import ds.alg.analysis.Stopwatch;
 import java.util.Date;
 import util.array.ArrayUtility;
-import ds.alg.analysis.Stopwatch;
 
 public class InsertionSortTest {
 
@@ -27,12 +27,13 @@ public class InsertionSortTest {
             System.out.printf("Array[%d] before: %s\n", size, ArrayUtility.toString(array, "[", ", ", "]"));
 
             // Sort the array & start timing
-            Stopwatch.startWatch();
+            Stopwatch watch = new Stopwatch(); // Constructor automatically starts timing
             InsertionSort.sort(array);
-            Stopwatch.stopWatch();
+            long elapsedTime = watch.elapsedTime();
 
             // Print after sorting
             System.out.printf("Array[%d] after:  %s\n", size, ArrayUtility.toString(array, "[", ", ", "]"));
+            System.out.printf("Sort time: %d ms\n", elapsedTime);
 
             // Check if sorted correctly
             boolean isSorted = ArrayUtility.isSorted(array);
@@ -105,7 +106,7 @@ public class InsertionSortTest {
         // Iterate through each size generate a corresponding array of random values
         for (int size : sizes) {
             // Generate random array
-            Comparable[] array;
+            Comparable<?>[] array;
             if (size == 0) {
                 array = new Comparable[0];
             } else {
@@ -125,18 +126,6 @@ public class InsertionSortTest {
             boolean isSorted = ArrayUtility.isSorted(array);
             System.out.printf("Array[%d] is sorted: %s\n\n", size, isSorted);
         }
-    }
-
-    /**
-     * Helper method to check if a long array is sorted
-     */
-    private static boolean isSortedLong(long[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
-            if (array[i] > array[i + 1]) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public static void main(String[] args) {
