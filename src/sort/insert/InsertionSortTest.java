@@ -4,6 +4,12 @@ import ds.alg.analysis.Stopwatch;
 import java.util.Date;
 import util.array.ArrayUtility;
 
+/**
+ * Tests the insertion sort algorithm with arrays of different data types and
+ * sizes.
+ *
+ * @author Cullen Kelley
+ */
 public class InsertionSortTest {
 
     /**
@@ -41,6 +47,9 @@ public class InsertionSortTest {
         }
     }
 
+    /**
+     * Tests the insertion sort with arrays of doubles.
+     */
     public static void testInsertionSortLong() {
         // Define array sizes to test
         int[] sizes = {0, 1, 2, 5, 10};
@@ -70,6 +79,9 @@ public class InsertionSortTest {
         }
     }
 
+    /**
+     * Tests the insertion sort with arrays of doubles.
+     */
     public static void testInsertionSortDouble() {
         // Define array sizes to test
         int[] sizes = {0, 1, 2, 5, 10};
@@ -99,6 +111,9 @@ public class InsertionSortTest {
         }
     }
 
+    /**
+     * Tests the insertion sort with arrays of Comparable objects (Strings).
+     */
     public static void testInsertionSortObject() {
         // Define array sizes to test
         int[] sizes = {0, 1, 2, 5, 10};

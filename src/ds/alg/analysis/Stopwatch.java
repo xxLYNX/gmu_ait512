@@ -6,6 +6,12 @@
  */
 package ds.alg.analysis;
 
+/**
+ * Stopwatch utility for measuring elapsed time.
+ *
+ * @author Cullen Kelley
+ *
+ */
 public class Stopwatch {
 
     /**
