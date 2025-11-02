@@ -5,19 +5,43 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import search.symboltable.SymbolTable;
 
+/**
+ * Implementation of a binary search tree for symbol ordering.
+ *
+ * @param <Key> The generic type for the keys, must implement Comparable
+ * @param <Value> The generic type for the values
+ */
 public class BinarySearchTree<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 
+    /**
+     * Inner class that represents a node in the binary search tree.
+     */
     private class Node {
 
         // made key final
+        /**
+         * The key for the node, must be not null
+         */
         private final Key key;
+        /**
+         * The value associated with the key, must be not null
+         */
         private Value value;
 
         private Node leftSubtree;
         private Node rightSubtree;
 
+        /**
+         * Size of the subtree rooted at this node
+         */
         private int size;
 
+        /**
+         * Constructor for creating a new node in the binary search tree.
+         *
+         * @param key - The key for the node
+         * @param value - The associated value
+         */
         public Node(Key key, Value value) {
             this.key = key;
             this.value = value;
@@ -29,10 +53,19 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
 
     private Node rootNode;
 
+    /**
+     * Constructor for creating an empty binary search tree.
+     */
     public BinarySearchTree() {
         rootNode = null;
     }
 
+    /**
+     * Returns the size of the subtree rooted at the given node.
+     *
+     * @param subtree
+     * @return
+     */
     private int size(Node subtree) {
         if (subtree == null) {
             return 0;
@@ -40,16 +73,30 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return subtree.size;
     }
 
+    /**
+     * Returns the size of the binary search tree.
+     */
     @Override
     public int size() {
         return size(rootNode);
     }
 
+    /**
+     * Returns true if the binary search tree is empty, false otherwise.
+     */
     @Override
     public boolean isEmpty() {
         return size() == 0;
     }
 
+    /**
+     * Retrieves the value associated with the given key in the subtree rooted
+     * at subtreeRoot.
+     *
+     * @param subtreeRoot
+     * @param key
+     * @return
+     */
     private Value get(Node subtreeRoot, Key key) {
         // check if an empty subtree
         if (subtreeRoot == null) // not found in an empty subtree
@@ -73,6 +120,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    /**
+     * Checks if the binary search tree contains the given key.
+     */
     @Override
     public boolean contains(Key key) {
         if (key == null) {
@@ -81,6 +131,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return get(key) != null;
     }
 
+    /**
+     * Retrieves the value associated with the given key.
+     */
     @Override
     public Value get(Key key) {
         if (key == null) {
@@ -89,9 +142,18 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return get(rootNode, key);
     }
 
+    /**
+     * Helper method to insert a key-value pair into the subtree rooted at
+     * treeRoot.
+     *
+     * @param treeRoot The root of the subtree
+     * @param key The key to insert
+     * @param value The value associated with the key
+     * @return The updated subtree root
+     */
     private Node put(Node treeRoot, Key key, Value value) {
-        // if the tree is empty
-        if (treeRoot == null) // create and return a single node tree with  this association.
+        //I liked the comments from the assignment so I kep them for clarity when I review
+        if (treeRoot == null) //if the tree is empty create and return a single node tree with  this association.
         {
             return new Node(key, value);
         }
@@ -112,25 +174,34 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
         // update the size of the tree
         treeRoot.size = 1 + size(treeRoot.leftSubtree) + size(treeRoot.rightSubtree);
-        // return the updated tree
         return treeRoot;
     }
 
+    /**
+     * Inserts a key-value pair into the binary search tree. If the value is
+     * null, removes the key from the tree.
+     */
     @Override
     public void put(Key key, Value value) {
-        // check valid key
-        if (key == null) {
+
+        if (key == null) { // check valid key
             throw new IllegalArgumentException("Keys are not allowed to be null.");
         }
-        // if value is null delete the key
-        if (value == null) {
+
+        if (value == null) { // if value is null delete the key
             delete(key);
             return;
         }
-        // add the association key-value and update the tree
-        rootNode = put(rootNode, key, value);
+
+        rootNode = put(rootNode, key, value); // add the association key-value and update the tree
     }
 
+    /**
+     * Deletes the minimum key in the subtree rooted at x.
+     *
+     * @param x
+     * @return
+     */
     private Node deleteMin(Node x) {
         if (x.leftSubtree == null) {
             return x.rightSubtree;
@@ -140,6 +211,12 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return x;
     }
 
+    /**
+     * Deletes the minimum key in the binary search tree. If the tree is empty,
+     * throw an exception.
+     *
+     * @return
+     */
     public void deleteMin() {
         if (isEmpty()) {
             throw new NoSuchElementException("Symbol table is empty - no minimum element");
@@ -147,6 +224,12 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         rootNode = deleteMin(rootNode);
     }
 
+    /**
+     * Deletes the maximum key in the binary search tree. If the tree is empty,
+     * throw an exception.
+     *
+     * @return
+     */
     public void deleteMax() {
         if (isEmpty()) {
             throw new NoSuchElementException("Symbol table underflow");
@@ -155,6 +238,12 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         assert check();
     }
 
+    /**
+     * Deletes the maximum key in the subtree rooted at x.
+     *
+     * @param x
+     * @return
+     */
     private Node deleteMax(Node x) {
         if (x.rightSubtree == null) {
             return x.leftSubtree;
@@ -164,6 +253,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return x;
     }
 
+    /**
+     * Deletes the key (and its associated value) from the binary search tree.
+     */
     @Override
     public void delete(Key key) {
         if (key == null) {
@@ -173,6 +265,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         assert check();
     }
 
+    /**
+     * Helper method to delete a key from the subtree rooted at x.
+     *
+     * @param x The root of the subtree
+     * @param key The key to delete
+     * @return The updated subtree root
+     */
     private Node delete(Node x, Key key) {
         if (x == null) {
             return null;
@@ -200,6 +299,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
     }
 
     // hope
+    /**
+     * Returns the minimum key in the binary search tree.
+     */
     public Key min() {
         if (isEmpty()) {
             throw new NoSuchElementException("calls min() with empty symbol table");
@@ -207,6 +309,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return min(rootNode).key;
     }
 
+    /**
+     * Helper method to find the node with the minimum key in the subtree rooted
+     * at x.
+     *
+     * @param x The root of the subtree
+     * @return The node with the minimum key
+     */
     private Node min(Node x) {
         if (x.leftSubtree == null) {
             return x;
@@ -215,6 +324,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    /**
+     * Returns the maximum key in the binary search tree.
+     */
     public Key max() {
         if (isEmpty()) {
             throw new NoSuchElementException("calls max() with empty symbol table");
@@ -222,6 +334,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return max(rootNode).key;
     }
 
+    /**
+     * Helper method to find the node with the maximum key in the subtree rooted
+     * at x.
+     *
+     * @param x The root of the subtree
+     * @return The node with the maximum key
+     */
     private Node max(Node x) {
         if (x.rightSubtree == null) {
             return x;
@@ -230,6 +349,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    /**
+     * Returns the largest key less than or equal to the given key.
+     */
     public Key floor(Key key) {
         if (key == null) {
             throw new IllegalArgumentException("argument to floor() is null");
@@ -245,6 +367,14 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    /**
+     * Helper method to find the node with the largest key less than or equal to
+     * the given key in the subtree rooted at x.
+     *
+     * @param x The root of the subtree
+     * @param key The key to compare
+     * @return The node with the largest key less than or equal to the given key
+     */
     private Node floor(Node x, Key key) {
         if (x == null) {
             return null;
@@ -264,6 +394,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    /**
+     * Returns the smallest key greater than or equal to the given key.
+     */
     public Key ceiling(Key key) {
         if (key == null) {
             throw new IllegalArgumentException("argument to ceiling() is null");
@@ -279,6 +412,15 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    /**
+     * Helper method to find the node with the smallest key greater than or
+     * equal to the given key in the subtree rooted at x.
+     *
+     * @param x The root of the subtree
+     * @param key The key to compare
+     * @return The node with the smallest key greater than or equal to the given
+     * key
+     */
     private Node ceiling(Node x, Key key) {
         if (x == null) {
             return null;
@@ -298,6 +440,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return ceiling(x.rightSubtree, key);
     }
 
+    /**
+     * Returns the key of rank rank.
+     */
     public Key select(int rank) {
         if (rank < 0 || rank >= size()) {
             throw new IllegalArgumentException("argument to select() is invalid: " + rank);
@@ -305,6 +450,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return select(rootNode, rank);
     }
 
+    /**
+     * Helper method to find the key of rank rank in the subtree rooted at x.
+     *
+     * @param x The root of the subtree
+     * @param rank The rank to find
+     * @return The key of rank rank
+     */
     private Key select(Node x, int rank) {
         if (x == null) {
             return null;
@@ -319,6 +471,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    /**
+     * Returns the number of keys less than the given key.
+     */
     public int rank(Key key) {
         if (key == null) {
             throw new IllegalArgumentException("argument to rank() is null");
@@ -326,6 +481,14 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return rank(key, rootNode);
     }
 
+    /**
+     * Helper method to compute the number of keys less than the given key in
+     * the subtree rooted at x.
+     *
+     * @param key The key to compare
+     * @param x The root of the subtree
+     * @return The number of keys less than the given key
+     */
     private int rank(Key key, Node x) {
         if (x == null) {
             return 0;
@@ -340,6 +503,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    /**
+     * Returns a string representation of the binary search tree.
+     */
     private String toString(Node x) {
         if (x == null) {
             return "";
@@ -347,11 +513,18 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return "(" + toString(x.leftSubtree) + ") " + x.key.toString() + "=" + x.value.toString() + " (" + toString(x.rightSubtree) + ")";
     }
 
+    /**
+     * Returns a string representation of the binary search tree.
+     */
     @Override
     public String toString() {
         return toString(rootNode);
     }
 
+    /**
+     * Helper method to create a string representation of the binary search tree
+     * in a hierarchical format.
+     */
     private String toStringHT(String prefix, String left, String val, String right, Node x) {
         if (x == null) {
             return "";
@@ -363,10 +536,18 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return result;
     }
 
+    /**
+     * Returns a string representation of the binary search tree.
+     */
     public String toStringHT() {
         return toStringHT("", "", "", "", rootNode);
     }
 
+    /**
+     * Returns an iterable collection of all keys in the symbol table.
+     *
+     * @return an iterable collection of keys
+     */
     @Override
     public Iterable<Key> keys() {
         if (isEmpty()) {
@@ -375,6 +556,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return keys(min(), max());
     }
 
+    /**
+     * Returns all keys in the given range [lo, hi].
+     *
+     * @param lo The lower bound key
+     * @param hi The upper bound key
+     * @return An iterable collection of keys in the specified range
+     */
     public Iterable<Key> keys(Key lo, Key hi) {
         if (lo == null) {
             throw new IllegalArgumentException("first argument to keys() is null");
@@ -388,6 +576,15 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return queue;
     }
 
+    /**
+     * Helper method to collect keys in the given range [lo, hi] from the
+     * subtree rooted at x.
+     *
+     * @param x The root of the subtree
+     * @param queue The collection to store the keys
+     * @param lo The lower bound key
+     * @param hi The upper bound key
+     */
     private void keys(Node x, ArrayList<Key> queue, Key lo, Key hi) {
         if (x == null) {
             return;
@@ -405,11 +602,21 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    /**
+     * Returns an iterator over the keys in the binary search tree.
+     */
     @Override
     public Iterator<Key> iterator() {
         return keys().iterator();
     }
 
+    /**
+     * Returns the number of keys in the range [lo, hi].
+     *
+     * @param lo The lower bound key
+     * @param hi The upper bound key
+     * @return The number of keys in the specified range
+     */
     public int size(Key lo, Key hi) {
         if (lo == null) {
             throw new IllegalArgumentException("first argument to size() is null");
@@ -428,10 +635,19 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         }
     }
 
+    /**
+     * Returns the height of the binary search tree.
+     */
     public int height() {
         return height(rootNode);
     }
 
+    /**
+     * Helper method to compute the height of the subtree rooted at x.
+     *
+     * @param x The root of the subtree
+     * @return The height of the subtree
+     */
     private int height(Node x) {
         if (x == null) {
             return -1;
@@ -439,6 +655,11 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return 1 + Math.max(height(x.leftSubtree), height(x.rightSubtree));
     }
 
+    /**
+     * Returns the keys in level-order traversal.
+     *
+     * @return An iterable collection of keys in level-order
+     */
     public Iterable<Key> levelOrder() {
         ArrayList<Key> keys = new ArrayList<>(); // instead of ArrayList<Key>(); you can use <> instad!
         ArrayList<Node> queue = new ArrayList<>(); //dropped Node from <>
@@ -473,6 +694,15 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return isBST(rootNode, null, null);
     }
 
+    /**
+     * Helper method to check if the subtree rooted at x is a binary search tree
+     * within the given min and max bounds.
+     *
+     * @param x The root of the subtree
+     * @param min The minimum key bound
+     * @param max The maximum key bound
+     * @return true if the subtree is a binary search tree, false otherwise
+     */
     private boolean isBST(Node x, Key min, Key max) {
         if (x == null) {
             return true;
@@ -500,6 +730,11 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Sym
         return isSizeConsistent(x.leftSubtree) && isSizeConsistent(x.rightSubtree);
     }
 
+    /**
+     * Helper method to check if the rank and select operations are consistent.
+     *
+     * @return true if rank and select are consistent, false otherwise
+     */
     private boolean isRankConsistent() {
         for (int i = 0; i < size(); i++) {
             if (i != rank(select(i))) {
