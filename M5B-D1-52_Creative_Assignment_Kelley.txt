@@ -1,0 +1,724 @@
+M5B-D1-52 Creative Assignment: Graph Algorithms for Real-World Applications
+==============================================================================
+
+Student: Cullen Kelley
+Course: AIT-512 Data Structures and Algorithms
+Assignment: M5B-D1-52 Creative Assignment - Graph Data Structures and BFS
+Date: November 15, 2025
+Professor: [Professor Name]
+
+ASSIGNMENT OVERVIEW
+===================
+
+This assignment demonstrates the practical application of graph data structures and Breadth-First Search (BFS) algorithms through a real-world autonomous vehicle route planning system. The solution models a regional gas station network as an undirected graph, using the standard Bag Abstract Data Type (ADT) for adjacency list representation and implementing BFS for optimal route discovery and network analysis.
+
+PROBLEM STATEMENT
+=================
+
+Modern autonomous vehicles require sophisticated route planning systems to ensure safe, efficient operation. This system addresses the critical need for intelligent fuel/charging station route planning by modeling gas stations as vertices in an undirected graph connected by direct driving routes (edges). The system must provide:
+
+1. Optimal route planning between any two gas stations
+2. Emergency fuel location services within specified search radius
+3. Network connectivity analysis for safety assurance
+4. Fleet distribution optimization for ride-sharing services
+
+KEY REQUIREMENTS MET
+====================
+
+✓ Real-world undirected graph implementation
+✓ Breadth-First Search algorithm for shortest path discovery
+✓ Integration with standard Bag ADT implementation (ds.bag.FixedCapacityBag)
+✓ Comprehensive demonstration of graph traversal capabilities
+✓ Practical autonomous vehicle transportation theme
+
+TECHNICAL IMPLEMENTATION
+=========================
+
+System Architecture:
+
+1. GasStation.java
+   - Represents individual gas stations as graph vertices
+   - Uses Bag<String> for fuel types and amenities storage
+   - Provides location coordinates and distance calculations
+   - Integrates seamlessly with Bag ADT requirements
+
+2. GasStationNetwork.java
+   - Implements undirected graph using Map<Integer, Bag<Integer>> adjacency lists
+   - Provides BFS traversal capabilities for route exploration
+   - Maintains network connectivity and structure information
+   - Uses standard Bag ADT for all adjacency list operations
+
+3. RouteManager.java
+   - Implements BFS-based route planning algorithms
+   - Provides emergency fuel search within specified radius
+   - Analyzes network connectivity for safety assessment
+   - Optimizes fleet distribution using graph traversal
+
+4. AutonomousVehicleRoutePlanner.java
+   - Main demonstration program with comprehensive scenarios
+   - Shows practical applications of BFS algorithms
+   - Provides detailed output formatting and analysis results
+
+ALGORITHM ANALYSIS
+==================
+
+Breadth-First Search Implementation:
+- Time Complexity: O(V + E) where V = gas stations, E = direct routes
+- Space Complexity: O(V) for BFS queue and visited tracking
+- Optimal for unweighted graphs (finds shortest path by hop count)
+- Guarantees finding minimum hop routes between any two stations
+
+Graph Representation:
+- Adjacency List using Map<Integer, Bag<Integer>>
+- Space Efficient: O(V + E) storage requirement
+- Fast neighbor access: O(1) average case for adjacency lookup
+- Bag ADT integration maintains assignment requirements
+
+DEMONSTRATION RESULTS
+=====================
+
+Network Configuration:
+- 10 Gas Stations (vertices) representing regional highway network
+- 10 Direct Routes (edges) connecting major highway corridors
+- 100% connectivity verified through BFS analysis
+- Multiple fuel types and amenities per station
+
+Route Planning Scenarios:
+
+Scenario 1: Long-Distance Electric Vehicle Route
+- Origin: Shell (I-95 Exit 42) → Destination: Exxon (Manassas Junction)
+- BFS Result: 3-hop optimal route with electric charging availability
+- Distance: 53.22 km via I-95/I-66 highway interchange
+
+Scenario 2: Local Area Navigation
+- Origin: Sunoco (Route 7 Tysons) → Destination: Shell (Dulles Airport)
+- BFS Result: 2-hop optimal route through Route 7 corridor
+- Distance: 26.17 km with premium fuel availability
+
+Scenario 3: Emergency Commercial Vehicle Rerouting
+- Origin: Exxon (I-95 Exit 48) → Destination: BP (Fairfax City Center)
+- BFS Result: 3-hop route with diesel availability at all waypoints
+- Distance: 34.82 km ensuring commercial vehicle fuel requirements
+
+Emergency Fuel Planning Results:
+
+Electric Vehicle Emergency (3-hop search radius):
+- Found 5 stations with electric charging capability
+- BFS explored 9 stations within search radius
+- Recommended nearest charging: Shell (1 hop), Sunoco (1 hop)
+
+Commercial Truck Emergency (2-hop search radius):
+- Found 4 stations with diesel fuel availability
+- BFS explored 5 stations within search radius
+- Recommended nearest diesel: Chevron (1 hop), Exxon (1 hop)
+
+Fleet Distribution Analysis:
+- 5-vehicle autonomous fleet optimization
+- Coverage analysis shows 4-7 stations reachable within 2 hops per vehicle
+- Strategic positioning minimizes fuel shortage risk
+- Redundant coverage ensures service reliability
+
+REAL-WORLD APPLICATIONS
+========================
+
+1. Autonomous Vehicle Navigation Systems
+   - Real-time route optimization for self-driving cars
+   - Battery/fuel range planning for long-distance travel
+   - Emergency rerouting when preferred stations are unavailable
+
+2. Commercial Fleet Management
+   - Delivery truck route optimization with fuel constraints
+   - Emergency fuel planning for commercial vehicles
+   - Cost-effective route planning for logistics companies
+
+3. Ride-Sharing Service Optimization
+   - Strategic vehicle positioning for maximum coverage
+   - Fuel-efficient passenger pickup route planning
+   - Service reliability through network redundancy analysis
+
+4. Transportation Infrastructure Planning
+   - Gas station placement optimization for new highway construction
+   - Network connectivity analysis for autonomous vehicle safety
+   - Emergency services planning for isolated or disconnected areas
+
+TECHNICAL ACHIEVEMENTS
+======================
+
+Standard Bag ADT Integration:
+✓ Successfully integrated ds.bag.FixedCapacityBag throughout system
+✓ Used Bag<Integer> for all graph adjacency list implementations
+✓ Maintained ADT interface requirements while providing graph functionality
+✓ Demonstrated practical application of abstract data type concepts
+
+BFS Algorithm Implementation:
+✓ Efficient shortest path discovery in unweighted graphs
+✓ Comprehensive network connectivity analysis
+✓ Emergency search capabilities with configurable radius limits
+✓ Fleet optimization through strategic coverage analysis
+
+Graph Data Structure Mastery:
+✓ Undirected graph representation using adjacency lists
+✓ Efficient vertex and edge management operations
+✓ Network analysis and connectivity verification
+✓ Scalable design supporting additional stations and routes
+
+CONCLUSION
+==========
+
+This assignment successfully demonstrates the practical application of graph data structures and BFS algorithms in solving real-world transportation challenges. The autonomous vehicle route planning system showcases how fundamental computer science concepts directly enable modern technological innovations.
+
+Key accomplishments include:
+1. Successful integration of standard Bag ADT with graph algorithms
+2. Efficient BFS implementation for multiple routing scenarios
+3. Comprehensive network analysis capabilities for safety assurance
+4. Practical demonstration of graph algorithms in autonomous vehicle systems
+
+The system provides a foundation for advanced autonomous vehicle navigation, emergency planning, and fleet management - critical capabilities for the future of transportation technology.
+
+PROGRAM OUTPUT EXECUTION
+=========================
+
+[The complete program output follows, showing all demonstration scenarios and BFS algorithm execution results]
+
+================================================================
+         AUTONOMOUS VEHICLE GAS STATION ROUTE PLANNER          
+================================================================
+Program: Gas Station Network for Autonomous Vehicles
+Name: Cullen Kelley
+Date: November 15, 2025 at 23:56:32
+Course: AIT-512 Data Structures and Algorithms
+Assignment: M5B-D1-52 Creative Assignment
+================================================================
+
+OVERVIEW:
+This system models a regional gas station network as an undirected
+graph to support autonomous vehicle route planning. Gas stations are
+vertices connected by direct driving routes (edges). The system uses
+Breadth-First Search algorithms to find optimal refueling paths,
+analyze network connectivity, and provide emergency fuel planning
+for safe autonomous vehicle operation.
+
+KEY FEATURES:
+  1. BFS-based shortest path route planning
+  2. Network connectivity analysis for safety
+  3. Emergency fuel station location services
+  4. Fleet distribution optimization
+  5. Integration with standard Bag ADT implementation
+
+=== BUILDING REGIONAL GAS STATION NETWORK ===
+Creating highway network infrastructure for autonomous vehicles...
+
+STEP 1: Adding Gas Stations to Network
+--------------------------------------
+I-95 North-South Corridor:
+  - Shell (ID: 1) at I-95 Exit 42
+  - BP (ID: 2) at I-95 Exit 45
+  - Exxon (ID: 3) at I-95 Exit 48
+
+I-66 East-West Corridor:
+  - Chevron (ID: 4) at I-66 Exit 57
+  - Mobil (ID: 5) at I-66 Exit 60
+
+Route 7 Local Network:
+  - Sunoco (ID: 6) at Route 7 Tysons
+  - Wawa (ID: 7) at Route 7 Reston
+
+Strategic Locations:
+  - Shell (ID: 8) at Dulles Airport
+  - BP (ID: 9) at Fairfax City Center
+  - Exxon (ID: 10) at Manassas Junction
+
+Network Status: Added 10 gas stations successfully
+
+STEP 2: Configuring Station Amenities
+-------------------------------------
+Station Configuration:
+  Shell (ID: 1)
+    Fuel Types: Regular, Premium, Diesel, Electric
+    Amenities: Full Service (Car Wash, Auto Repair, Food)
+    Electric Charging: Available
+Station Configuration:
+  BP (ID: 2)
+    Fuel Types: Regular, Premium, Diesel, Electric
+    Amenities: Basic Service
+    Electric Charging: Available
+Station Configuration:
+  Exxon (ID: 3)
+    Fuel Types: Regular, Premium, Diesel
+    Amenities: Full Service (Car Wash, Auto Repair, Food)
+    Electric Charging: Not Available
+Station Configuration:
+  Chevron (ID: 4)
+    Fuel Types: Regular, Premium, Diesel, Electric
+    Amenities: Full Service (Car Wash, Auto Repair, Food)
+    Electric Charging: Available
+Station Configuration:
+  Mobil (ID: 5)
+    Fuel Types: Regular, Premium, Diesel
+    Amenities: Basic Service
+    Electric Charging: Not Available
+Station Configuration:
+  Sunoco (ID: 6)
+    Fuel Types: Regular, Premium, Diesel, Electric
+    Amenities: Basic Service
+    Electric Charging: Available
+Station Configuration:
+  Wawa (ID: 7)
+    Fuel Types: Regular, Premium, Diesel, Electric
+    Amenities: Full Service (Car Wash, Auto Repair, Food)
+    Electric Charging: Available
+Station Configuration:
+  Shell (ID: 8)
+    Fuel Types: Regular, Premium, Diesel, Electric
+    Amenities: Full Service (Car Wash, Auto Repair, Food)
+    Electric Charging: Available
+Station Configuration:
+  BP (ID: 9)
+    Fuel Types: Regular, Premium, Diesel
+    Amenities: Full Service (Car Wash, Auto Repair, Food)
+    Electric Charging: Not Available
+Station Configuration:
+  Exxon (ID: 10)
+    Fuel Types: Regular, Premium, Diesel, Electric
+    Amenities: Basic Service
+    Electric Charging: Available
+
+STEP 3: Establishing Route Connections
+--------------------------------------
+Highway Corridors:
+  - I-95 North-South corridor connected
+  - I-66 East-West corridor connected
+  - Route 7 local network connected
+
+Major Interchanges:
+  - I-95/I-66 interchange connected (Shell to Chevron)
+  - Highway-to-local routes established
+  - Airport access routes connected
+  - Regional connectivity enhanced
+
+Network construction completed successfully!
+Ready for autonomous vehicle route planning.
+
+
+=== GAS STATION NETWORK STRUCTURE ===
+Total Stations: 10
+Total Routes: 10
+
+Station Connections:
+
+Shell (ID:1) - I-95 Exit 42 North
+  Connected to: BP (ID:2), Chevron (ID:4)
+
+BP (ID:2) - I-95 Exit 45 North
+  Connected to: Shell (ID:1), Exxon (ID:3), Sunoco (ID:6)
+
+Exxon (ID:3) - I-95 Exit 48 North
+  Connected to: BP (ID:2)
+
+Chevron (ID:4) - I-66 Exit 57 West
+  Connected to: Mobil (ID:5), Shell (ID:1), Shell (ID:8)
+
+Mobil (ID:5) - I-66 Exit 60 West
+  Connected to: Chevron (ID:4), Exxon (ID:10)
+
+Sunoco (ID:6) - Route 7 Tysons
+  Connected to: Wawa (ID:7), BP (ID:2), BP (ID:9)
+
+Wawa (ID:7) - Route 7 Reston
+  Connected to: Sunoco (ID:6), Shell (ID:8)
+
+Shell (ID:8) - Dulles Airport Area
+  Connected to: Chevron (ID:4), Wawa (ID:7)
+
+BP (ID:9) - Fairfax City Center
+  Connected to: Sunoco (ID:6)
+
+Exxon (ID:10) - Manassas Junction
+  Connected to: Mobil (ID:5)
+=====================================
+
+=== AUTONOMOUS VEHICLE ROUTE OPTIMIZATION DEMO ===
+Demonstrating BFS-based optimal pathfinding for autonomous vehicles
+
+SCENARIO 1: Long-Distance Route Planning
+=======================================
+Objective: Plan route for autonomous electric vehicle
+From: Station 1 (Shell at I-95 Exit 42)
+To: Station 10 (Exxon at Manassas Junction)
+Required Fuel: Electric charging capability
+
+=== AUTONOMOUS VEHICLE ROUTE PLANNING ===
+Origin: Shell (ID:1) - I-95 Exit 42 North
+Destination: Exxon (ID:10) - Manassas Junction
+Preferred Fuel: Electric
+
+Calculating optimal route using BFS...
+Route planning completed successfully!
+
+=== ROUTE DETAILS FOR AUTONOMOUS VEHICLE ===
+Total Hops: 3
+Estimated Distance: 53.22 km
+Required Fuel Types: Electric 
+
+Autonomous Vehicle Route Plan:
+START: Shell (ID:1) - I-95 Exit 42 North [Electric Available]
+WAYPOINT 1: Chevron (ID:4) - I-66 Exit 57 West [Electric Available]
+WAYPOINT 2: Mobil (ID:5) - I-66 Exit 60 West [No Electric]
+DESTINATION: Exxon (ID:10) - Manassas Junction [Electric Available]
+
+===============================================
+
+SCENARIO 2: Local Area Navigation
+=================================
+Objective: Short-distance autonomous navigation
+From: Station 6 (Sunoco at Route 7 Tysons)
+To: Station 8 (Shell at Dulles Airport)
+Required Fuel: Premium gasoline
+
+=== AUTONOMOUS VEHICLE ROUTE PLANNING ===
+Origin: Sunoco (ID:6) - Route 7 Tysons
+Destination: Shell (ID:8) - Dulles Airport Area
+Preferred Fuel: Premium
+
+Calculating optimal route using BFS...
+Route planning completed successfully!
+
+=== ROUTE DETAILS FOR AUTONOMOUS VEHICLE ===
+Total Hops: 2
+Estimated Distance: 26.17 km
+Required Fuel Types: Premium 
+
+Autonomous Vehicle Route Plan:
+START: Sunoco (ID:6) - Route 7 Tysons [Premium Available]
+WAYPOINT 1: Wawa (ID:7) - Route 7 Reston [Premium Available]
+DESTINATION: Shell (ID:8) - Dulles Airport Area [Premium Available]
+
+===============================================
+
+SCENARIO 3: Emergency Rerouting
+===============================
+Objective: Emergency fuel planning for delivery truck
+From: Station 3 (Exxon at I-95 Exit 48)
+To: Station 9 (BP at Fairfax City Center)
+Required Fuel: Diesel for commercial vehicle
+
+=== AUTONOMOUS VEHICLE ROUTE PLANNING ===
+Origin: Exxon (ID:3) - I-95 Exit 48 North
+Destination: BP (ID:9) - Fairfax City Center
+Preferred Fuel: Diesel
+
+Calculating optimal route using BFS...
+Route planning completed successfully!
+
+=== ROUTE DETAILS FOR AUTONOMOUS VEHICLE ===
+Total Hops: 3
+Estimated Distance: 34.82 km
+Required Fuel Types: Diesel 
+
+Autonomous Vehicle Route Plan:
+START: Exxon (ID:3) - I-95 Exit 48 North [Diesel Available]
+WAYPOINT 1: BP (ID:2) - I-95 Exit 45 North [Diesel Available]
+WAYPOINT 2: Sunoco (ID:6) - Route 7 Tysons [Diesel Available]
+DESTINATION: BP (ID:9) - Fairfax City Center [Diesel Available]
+
+===============================================
+
+=== NETWORK CONNECTIVITY ANALYSIS FOR SAFETY ===
+Analyzing network reliability for autonomous vehicle operations
+
+
+=== NETWORK CONNECTIVITY ANALYSIS ===
+
+=== BFS ROUTE EXPLORATION ===
+Starting from: Shell (ID:1) - I-95 Exit 42 North
+Maximum exploration distance: 2147483647 hops
+
+BFS Traversal Progress:
+  Exploring: Shell (ID:1) - I-95 Exit 42 North (Distance: 0 hops)
+    Found route to: BP (ID:2) - I-95 Exit 45 North (Distance: 1 hops)
+    Found route to: Chevron (ID:4) - I-66 Exit 57 West (Distance: 1 hops)
+  Exploring: BP (ID:2) - I-95 Exit 45 North (Distance: 1 hops)
+    Found route to: Exxon (ID:3) - I-95 Exit 48 North (Distance: 2 hops)
+    Found route to: Sunoco (ID:6) - Route 7 Tysons (Distance: 2 hops)
+  Exploring: Chevron (ID:4) - I-66 Exit 57 West (Distance: 1 hops)
+    Found route to: Mobil (ID:5) - I-66 Exit 60 West (Distance: 2 hops)
+    Found route to: Shell (ID:8) - Dulles Airport Area (Distance: 2 hops)
+  Exploring: Exxon (ID:3) - I-95 Exit 48 North (Distance: 2 hops)
+  Exploring: Sunoco (ID:6) - Route 7 Tysons (Distance: 2 hops)
+    Found route to: Wawa (ID:7) - Route 7 Reston (Distance: 3 hops)
+    Found route to: BP (ID:9) - Fairfax City Center (Distance: 3 hops)
+  Exploring: Mobil (ID:5) - I-66 Exit 60 West (Distance: 2 hops)
+    Found route to: Exxon (ID:10) - Manassas Junction (Distance: 3 hops)
+  Exploring: Shell (ID:8) - Dulles Airport Area (Distance: 2 hops)
+  Exploring: Wawa (ID:7) - Route 7 Reston (Distance: 3 hops)
+  Exploring: BP (ID:9) - Fairfax City Center (Distance: 3 hops)
+  Exploring: Exxon (ID:10) - Manassas Junction (Distance: 3 hops)
+BFS Complete. Explored 10 stations.
+Network Analysis Results:
+  Total Stations: 10
+  Reachable from Shell: 10
+  Connectivity: 100.0%
+  Status: FULLY CONNECTED
+  All stations are reachable - safe for autonomous vehicle operation
+==========================================
+
+SAFETY ASSESSMENT RESULTS:
+=========================
+Status: NETWORK FULLY CONNECTED
+Safety Level: HIGH
+Assessment:
+  - All gas stations are reachable from any starting point
+  - Autonomous vehicles can safely navigate between any two locations
+  - No isolated areas or unreachable stations detected
+  - Network is suitable for reliable autonomous vehicle operation
+
+=== EMERGENCY FUEL PLANNING SCENARIOS ===
+Testing emergency fuel location capabilities using BFS search
+
+EMERGENCY SCENARIO 1: Electric Vehicle Low Battery
+================================================
+Vehicle Type: Autonomous Electric Vehicle
+Current Location: Station 2 (BP at I-95 Exit 45)
+Search Radius: 3 station hops
+Required Service: Electric charging capability
+
+=== EMERGENCY FUEL SEARCH ===
+Current Location: BP (ID:2) - I-95 Exit 45 North
+Required Fuel Type: Electric
+Search Radius: 3 hops
+
+=== BFS ROUTE EXPLORATION ===
+Starting from: BP (ID:2) - I-95 Exit 45 North
+Maximum exploration distance: 3 hops
+
+BFS Traversal Progress:
+  Exploring: BP (ID:2) - I-95 Exit 45 North (Distance: 0 hops)
+    Found route to: Shell (ID:1) - I-95 Exit 42 North (Distance: 1 hops)
+    Found route to: Exxon (ID:3) - I-95 Exit 48 North (Distance: 1 hops)
+    Found route to: Sunoco (ID:6) - Route 7 Tysons (Distance: 1 hops)
+  Exploring: Shell (ID:1) - I-95 Exit 42 North (Distance: 1 hops)
+    Found route to: Chevron (ID:4) - I-66 Exit 57 West (Distance: 2 hops)
+  Exploring: Exxon (ID:3) - I-95 Exit 48 North (Distance: 1 hops)
+  Exploring: Sunoco (ID:6) - Route 7 Tysons (Distance: 1 hops)
+    Found route to: Wawa (ID:7) - Route 7 Reston (Distance: 2 hops)
+    Found route to: BP (ID:9) - Fairfax City Center (Distance: 2 hops)
+  Exploring: Chevron (ID:4) - I-66 Exit 57 West (Distance: 2 hops)
+    Found route to: Mobil (ID:5) - I-66 Exit 60 West (Distance: 3 hops)
+    Found route to: Shell (ID:8) - Dulles Airport Area (Distance: 3 hops)
+  Exploring: Wawa (ID:7) - Route 7 Reston (Distance: 2 hops)
+  Exploring: BP (ID:9) - Fairfax City Center (Distance: 2 hops)
+  Exploring: Mobil (ID:5) - I-66 Exit 60 West (Distance: 3 hops)
+  Exploring: Shell (ID:8) - Dulles Airport Area (Distance: 3 hops)
+BFS Complete. Explored 9 stations.
+
+Analyzing fuel availability:
+  Shell (ID:1) - I-95 Exit 42 North (Distance: 1 hops) - Has Electric
+  Exxon (ID:3) - I-95 Exit 48 North (Distance: 1 hops) - No Electric
+  Chevron (ID:4) - I-66 Exit 57 West (Distance: 2 hops) - Has Electric
+  Mobil (ID:5) - I-66 Exit 60 West (Distance: 3 hops) - No Electric
+  Sunoco (ID:6) - Route 7 Tysons (Distance: 1 hops) - Has Electric
+  Wawa (ID:7) - Route 7 Reston (Distance: 2 hops) - Has Electric
+  Shell (ID:8) - Dulles Airport Area (Distance: 3 hops) - Has Electric
+  BP (ID:9) - Fairfax City Center (Distance: 2 hops) - No Electric
+Found 5 stations with required fuel
+
+EMERGENCY SEARCH RESULTS:
+------------------------
+Status: SUITABLE STATIONS LOCATED
+Found 5 station(s) with Electric fuel:
+Recommended Stations:
+  1. Shell (ID:1) - I-95 Exit 42 North
+  2. Chevron (ID:4) - I-66 Exit 57 West
+  3. Sunoco (ID:6) - Route 7 Tysons
+  4. Wawa (ID:7) - Route 7 Reston
+  5. Shell (ID:8) - Dulles Airport Area
+
+EMERGENCY SCENARIO 2: Commercial Delivery Truck
+==============================================
+Vehicle Type: Autonomous Delivery Truck
+Current Location: Station 5 (Mobil at I-66 Exit 60)
+Search Radius: 2 station hops
+Required Service: Diesel fuel
+
+=== EMERGENCY FUEL SEARCH ===
+Current Location: Mobil (ID:5) - I-66 Exit 60 West
+Required Fuel Type: Diesel
+Search Radius: 2 hops
+
+=== BFS ROUTE EXPLORATION ===
+Starting from: Mobil (ID:5) - I-66 Exit 60 West
+Maximum exploration distance: 2 hops
+
+BFS Traversal Progress:
+  Exploring: Mobil (ID:5) - I-66 Exit 60 West (Distance: 0 hops)
+    Found route to: Chevron (ID:4) - I-66 Exit 57 West (Distance: 1 hops)
+    Found route to: Exxon (ID:10) - Manassas Junction (Distance: 1 hops)
+  Exploring: Chevron (ID:4) - I-66 Exit 57 West (Distance: 1 hops)
+    Found route to: Shell (ID:1) - I-95 Exit 42 North (Distance: 2 hops)
+    Found route to: Shell (ID:8) - Dulles Airport Area (Distance: 2 hops)
+  Exploring: Exxon (ID:10) - Manassas Junction (Distance: 1 hops)
+  Exploring: Shell (ID:1) - I-95 Exit 42 North (Distance: 2 hops)
+  Exploring: Shell (ID:8) - Dulles Airport Area (Distance: 2 hops)
+BFS Complete. Explored 5 stations.
+
+Analyzing fuel availability:
+  Shell (ID:1) - I-95 Exit 42 North (Distance: 2 hops) - Has Diesel
+  Chevron (ID:4) - I-66 Exit 57 West (Distance: 1 hops) - Has Diesel
+  Shell (ID:8) - Dulles Airport Area (Distance: 2 hops) - Has Diesel
+  Exxon (ID:10) - Manassas Junction (Distance: 1 hops) - Has Diesel
+Found 4 stations with required fuel
+
+EMERGENCY SEARCH RESULTS:
+------------------------
+Status: SUITABLE STATIONS LOCATED
+Found 4 station(s) with Diesel fuel:
+Recommended Stations:
+  1. Shell (ID:1) - I-95 Exit 42 North
+  2. Chevron (ID:4) - I-66 Exit 57 West
+  3. Shell (ID:8) - Dulles Airport Area
+  4. Exxon (ID:10) - Manassas Junction
+
+EMERGENCY SCENARIO 3: High-Performance Vehicle
+=============================================
+Vehicle Type: Autonomous Sports Car
+Current Location: Station 7 (Wawa at Route 7 Reston)
+Search Radius: 4 station hops
+Required Service: Premium gasoline
+
+=== EMERGENCY FUEL SEARCH ===
+Current Location: Wawa (ID:7) - Route 7 Reston
+Required Fuel Type: Premium
+Search Radius: 4 hops
+
+=== BFS ROUTE EXPLORATION ===
+Starting from: Wawa (ID:7) - Route 7 Reston
+Maximum exploration distance: 4 hops
+
+BFS Traversal Progress:
+  Exploring: Wawa (ID:7) - Route 7 Reston (Distance: 0 hops)
+    Found route to: Sunoco (ID:6) - Route 7 Tysons (Distance: 1 hops)
+    Found route to: Shell (ID:8) - Dulles Airport Area (Distance: 1 hops)
+  Exploring: Sunoco (ID:6) - Route 7 Tysons (Distance: 1 hops)
+    Found route to: BP (ID:2) - I-95 Exit 45 North (Distance: 2 hops)
+    Found route to: BP (ID:9) - Fairfax City Center (Distance: 2 hops)
+  Exploring: Shell (ID:8) - Dulles Airport Area (Distance: 1 hops)
+    Found route to: Chevron (ID:4) - I-66 Exit 57 West (Distance: 2 hops)
+  Exploring: BP (ID:2) - I-95 Exit 45 North (Distance: 2 hops)
+    Found route to: Shell (ID:1) - I-95 Exit 42 North (Distance: 3 hops)
+    Found route to: Exxon (ID:3) - I-95 Exit 48 North (Distance: 3 hops)
+  Exploring: BP (ID:9) - Fairfax City Center (Distance: 2 hops)
+  Exploring: Chevron (ID:4) - I-66 Exit 57 West (Distance: 2 hops)
+    Found route to: Mobil (ID:5) - I-66 Exit 60 West (Distance: 3 hops)
+  Exploring: Shell (ID:1) - I-95 Exit 42 North (Distance: 3 hops)
+  Exploring: Exxon (ID:3) - I-95 Exit 48 North (Distance: 3 hops)
+  Exploring: Mobil (ID:5) - I-66 Exit 60 West (Distance: 3 hops)
+    Found route to: Exxon (ID:10) - Manassas Junction (Distance: 4 hops)
+  Exploring: Exxon (ID:10) - Manassas Junction (Distance: 4 hops)
+BFS Complete. Explored 10 stations.
+
+Analyzing fuel availability:
+  Shell (ID:1) - I-95 Exit 42 North (Distance: 3 hops) - Has Premium
+  BP (ID:2) - I-95 Exit 45 North (Distance: 2 hops) - Has Premium
+  Exxon (ID:3) - I-95 Exit 48 North (Distance: 3 hops) - Has Premium
+  Chevron (ID:4) - I-66 Exit 57 West (Distance: 2 hops) - Has Premium
+  Mobil (ID:5) - I-66 Exit 60 West (Distance: 3 hops) - Has Premium
+  Sunoco (ID:6) - Route 7 Tysons (Distance: 1 hops) - Has Premium
+  Shell (ID:8) - Dulles Airport Area (Distance: 1 hops) - Has Premium
+  BP (ID:9) - Fairfax City Center (Distance: 2 hops) - Has Premium
+  Exxon (ID:10) - Manassas Junction (Distance: 4 hops) - Has Premium
+Found 9 stations with required fuel
+
+EMERGENCY SEARCH RESULTS:
+------------------------
+Status: SUITABLE STATIONS LOCATED
+Found 9 station(s) with Premium fuel:
+Recommended Stations:
+  1. Shell (ID:1) - I-95 Exit 42 North
+  2. BP (ID:2) - I-95 Exit 45 North
+  3. Exxon (ID:3) - I-95 Exit 48 North
+  4. Chevron (ID:4) - I-66 Exit 57 West
+  5. Mobil (ID:5) - I-66 Exit 60 West
+  6. Sunoco (ID:6) - Route 7 Tysons
+  7. Shell (ID:8) - Dulles Airport Area
+  8. BP (ID:9) - Fairfax City Center
+  9. Exxon (ID:10) - Manassas Junction
+
+=== AUTONOMOUS VEHICLE FLEET MANAGEMENT ===
+Optimizing vehicle distribution for maximum regional coverage
+
+FLEET SCENARIO: Ride-Sharing Service Deployment
+==============================================
+Fleet Size: 5 autonomous vehicles
+Objective: Maximize coverage area and fuel access
+Strategy: Position vehicles at strategic gas station locations
+
+
+=== AUTONOMOUS VEHICLE FLEET DISTRIBUTION ===
+Planning for fleet size: 5 vehicles
+
+Recommended vehicle distribution:
+Vehicle 1: Shell (ID:1) - I-95 Exit 42 North
+  Coverage: Can reach 7 stations within 2 hops
+Vehicle 2: Exxon (ID:3) - I-95 Exit 48 North
+  Coverage: Can reach 4 stations within 2 hops
+Vehicle 3: Mobil (ID:5) - I-66 Exit 60 West
+  Coverage: Can reach 5 stations within 2 hops
+Vehicle 4: Wawa (ID:7) - Route 7 Reston
+  Coverage: Can reach 6 stations within 2 hops
+Vehicle 5: BP (ID:9) - Fairfax City Center
+  Coverage: Can reach 4 stations within 2 hops
+
+===============================================
+FLEET MANAGEMENT INSIGHTS:
+==========================
+Strategic Benefits:
+  1. Vehicles positioned for maximum regional coverage
+  2. Each vehicle can reach multiple fuel options within 2 hops
+  3. Distribution minimizes risk of fuel shortages
+  4. Strategic positioning enables efficient passenger pickup
+  5. Redundant coverage ensures service reliability
+
+=== PROGRAM EXECUTION SUMMARY ===
+Program: Autonomous Vehicle Gas Station Route Planner
+Execution completed at: 23:56:32
+
+NETWORK STATISTICS:
+==================
+  Total Gas Stations: 10
+  Total Direct Routes: 10
+  Graph Type: Undirected, Unweighted
+  Representation: Adjacency List with Bag ADT
+
+ALGORITHM PERFORMANCE:
+=====================
+  Primary Algorithm: Breadth-First Search (BFS)
+  Time Complexity: O(V + E) where V=stations, E=routes
+  Space Complexity: O(V) for BFS queue and visited tracking
+  Data Structure Integration: Standard Bag ADT for adjacency lists
+
+REAL-WORLD APPLICATIONS DEMONSTRATED:
+====================================
+  1. Optimal route planning for autonomous vehicles
+  2. Network connectivity analysis for safety assurance
+  3. Emergency fuel location for critical situations
+  4. Fleet distribution optimization for ride-sharing
+
+TECHNICAL ACHIEVEMENTS:
+======================
+  1. Successfully integrated standard Bag ADT implementation
+  2. Implemented BFS for shortest path discovery
+  3. Demonstrated practical graph algorithms for transportation
+  4. Provided comprehensive autonomous vehicle route planning
+
+CONCLUSION:
+===========
+This program demonstrates the critical role of graph data structures
+and BFS algorithms in enabling safe, efficient autonomous vehicle
+operation through intelligent route planning and network analysis.
+
+Thank you for using the Autonomous Vehicle Route Planner!
+Safe travels in the age of autonomous transportation!
+
+==============================================================================
+END OF ASSIGNMENT DOCUMENT
+==============================================================================
